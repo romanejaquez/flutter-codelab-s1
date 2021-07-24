@@ -1,0 +1,1014 @@
+
+<!doctype html>
+
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <meta name="theme-color" content="#4F7DC9">
+  <meta charset="UTF-8">
+  <title>Flutter Codelab #1 - Creating The Landing Page - Building Layouts in Flutter (Workshop)</title>
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Code+Pro:400|Roboto:400,300,400italic,500,700|Roboto+Mono">
+  <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://storage.googleapis.com/codelab-elements/codelab-elements.css">
+  <style>
+    .success {
+      color: #1e8e3e;
+    }
+    .error {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <google-codelab-analytics gaid="UA-49880327-14"></google-codelab-analytics>
+  <google-codelab codelab-gaid=""
+                  id="flutter-codelab-s1"
+                  title="Flutter Codelab #1 - Creating The Landing Page - Building Layouts in Flutter (Workshop)"
+                  environment="web"
+                  feedback-link="https://romanjustcodes.web.app">
+    
+      <google-codelab-step label="Overview" duration="0">
+        <h2 is-upgraded>What You&#39;ll Build in this Workshop:</h2>
+<ul>
+<li>A simple 3-page Flutter Application / Bridges of the World (Splash Screen, Landing Page, Details Page)</li>
+<li>Create Flutter User interfaces with ease</li>
+<li>Common Flutter Layout strategies using just core widgets</li>
+<li>Creating custom Flutter widgets and achieve widget composition</li>
+<li>Creating Dart models to mock up app data</li>
+<li>Import network images</li>
+<li>Using Material Icon fonts</li>
+<li>Basic Navigation strategies</li>
+</ul>
+<p class="image-container"><img alt="Full Application" src="img/1fc0accd265d087a.png"></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Pre-requisites" duration="0">
+        <ul>
+<li>A computer with a browser</li>
+<li>An internet connection</li>
+</ul>
+<aside class="special"><p>We&#39;ll be using <a href="https://dartpad.dev/" target="_blank">DartPad</a>, a web-based, open-source tool that offers an online playground for learning Dart and Flutter. For more info, visit <a href="https://dart.dev/tools/dartpad" target="_blank">this link</a>.</p>
+</aside>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Launching DartPad" duration="1">
+        <p><a href="https://dartpad.dev/" target="_blank">DartPad</a> will be our Flutter development editor, so let&#39;s set it up for that.</p>
+<p>First, go to a browser and launch <a href="https://dartpad.dev/" target="_blank">dartpad.dev</a>. Your browser should look as follows:</p>
+<p class="image-container"><img alt="DartPad on the Web" src="img/864504f137532d7c.png"></p>
+<h2 is-upgraded>Setting up DartPad for Flutter Development</h2>
+<p>By default, DartPad is set up for Dart development. For Flutter development, do the following steps:</p>
+<ul>
+<li>From the top menu, select <strong>New Pad</strong>.</li>
+</ul>
+<p class="image-container"><img alt="Select New Pad" src="img/1f549a3175199a60.png"></p>
+<ul>
+<li>If prompted to discard changes of the current pad, click <strong>OK</strong>.</li>
+</ul>
+<p class="image-container"><img alt="Create New Pad" src="img/e78af321bbfdae09.png"></p>
+<ul>
+<li>From the <strong>New Pad</strong> dialog, select <strong>Flutter</strong>. Click <strong>Create</strong>.</li>
+</ul>
+<p class="image-container"><img alt="Select Flutter" src="img/236c1c1004b65cd2.png"></p>
+<p>You should be all set! Now you&#39;re ready to start coding in Flutter right from your browser. If you hit the <strong>Run</strong> button, you will see the generated output on the right panel.</p>
+<p class="image-container"><img alt="Select Flutter" src="img/2f5f9922e4dd8ade.png"></p>
+<p>Are you ready? Let&#39;s go to the next step!</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Initial Setup" duration="2">
+        <p>For the initial page in this application, we&#39;ll be building the Landing Page Widget.</p>
+<p>This is what we&#39;ll be accomplishing in this codelab:</p>
+<h2 is-upgraded>Landing Screen and its widget composition</h2>
+<p>The following illustration shows a schematic view of the widget composition we&#39;ll accomplish while building the layout for our Landing Page widget:</p>
+<p class="image-container"><img alt="Landing Page" src="img/a4a07fcaa4afaa2.png"></p>
+<h2 is-upgraded>Start Coding the App</h2>
+<p>Let&#39;s start coding this application from scratch. Remove all code from the editor and leave just the following code:</p>
+<pre><code language="language-flutter" class="language-flutter">import &#39;package:flutter/material.dart&#39;;
+
+void main() {
+  // TODO: more code here later
+}
+
+</code></pre>
+<p>We are importing the Material Library Flutter package and like every Flutter app, the main entrypoint is the <strong>main</strong> method. Inside this method is where things kick off. We&#39;ll get back to this point in a minute.</p>
+<p>Inside the <strong>main</strong> method, add the following code:</p>
+<p class="image-container"><img alt="Main Method" src="img/e6b8bb8a5a22b740.png"></p>
+<aside class="warning"><p>Don&#39;t mind the error you&#39;re seeing about the LandingPage widget since we haven&#39;t created yet. We&#39;ll get to it in a minute.</p>
+</aside>
+<p>The <a href="https://api.flutter.dev/flutter/widgets/runApp.html" target="_blank"><strong>runApp</strong></a> method is part of the Flutter framework and is in charge of mounting the root widget on the widget tree. We create the first widget (MaterialApp) which represents the application&#39;s root widget.</p>
+<p>We disable the debugging sash by setting the <strong>debugShowCheckedModeBanner</strong> to <strong><em>false</em></strong>, and set the <strong>home</strong> property of the MaterialApp widget to be our LandingPage widget, which we&#39;ll create in a moment.</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Create the LandingPage Widget" duration="3">
+        <p>Let&#39;s create the LandingPage Widget.</p>
+<p>Right under the <strong>main</strong> method, create a <strong><em>StatelessWidget</em></strong> called <strong>LandingPage</strong>. We create it as Stateless since we won&#39;t be maintaing state. More info on StatelessWidgets <a href="https://api.flutter.dev/flutter/widgets/StatelessWidget-class.html" target="_blank">here</a>.</p>
+<p>Since every widget has a <strong>build</strong> method, add one, and return a simple <strong>Scaffold</strong> widget with a <strong>Text</strong> widget as a child, with the content &#34;Landing Page&#34;.</p>
+<aside class="special"><p>The <a href="https://api.flutter.dev/flutter/widgets/StatelessWidget/build.html" target="_blank">build</a> method gets executed by Flutter when mounting the widget on the widget tree, which in turn builds its contents; in the case of a <a href="https://api.flutter.dev/flutter/widgets/StatefulWidget-class.html" target="_blank">StatefulWidget</a>, every time its state changes. We&#39;ll be dealing with states later in upcoming labs.</p>
+</aside>
+<p class="image-container"><img alt="Main Method" src="img/49a6d13159fb9568.png"></p>
+<p>If you try it out in DartPad, it should look like this:</p>
+<p class="image-container"><img alt="Scaffold" src="img/57913c061728a80b.png"></p>
+<p>Under the <strong>import</strong> statement, right above the <strong>main</strong> method, add the following lines:</p>
+<pre><code language="language-flutter" class="language-flutter">final Color mainYellow = Color(0xFFFFB02F);
+final Color primaryGray = Color(0xFF313131);
+final Color secondaryGray = Color(0xFF1C1C1C);
+final Color lightGray = Color(0xFF3B3B3B);
+</code></pre>
+<p>We want to use these colors as our application&#39;s color palette  <strong><em>(mainColor, primaryGray, secondaryGray)</em></strong> throughout our application and don&#39;t want to repeat ourselves, hence making these values as global properties.</p>
+<p>Back on the LandingPage widget, let&#39;s replace the <strong><em>body</em></strong>&#39;s <strong>Text</strong> widget by a <strong>Container</strong> widget, as such:</p>
+<p class="image-container"><img alt="Container" src="img/5c8bffe29fb4dd9b.png"></p>
+<aside class="special"><p>A <a href="https://api.flutter.dev/flutter/widgets/Container-class.html" target="_blank"><strong>Container</strong></a> widget is one of the most versatile widgets and can be considered one of the core widgets for building layouts, since it combines painting, positioning and sizing capabilities.</p>
+</aside>
+<p>Now, let&#39;s add a background color to this <strong>Container</strong> widget, but in the form of a gradient. Use the <strong>decoration</strong> property available in a <strong>Container</strong> widget, and provide the following values:</p>
+<ul>
+<li>For the <strong>decoration</strong>, add a <strong>BoxDecoration</strong> object</li>
+<li>Inside, add a <strong>gradient</strong> property and provide a <strong>LinearGradient</strong> object</li>
+<li>Inside the <strong>LinearGradient</strong> object, set the following properties:  <ul>
+<li>colors: set it as an array with two color values, <strong>primaryGray</strong> and <strong>secondaryGray</strong>; the two values in which the gradient will consist of</li>
+<li>begin: the point on which the gradient will begin - set it as <strong>Alignment.topCenter</strong></li>
+<li>end: the point on which the gradient will end - set it as <strong>Alignment.bottomCenter</strong></li>
+</ul>
+</li>
+</ul>
+<p>At the end, your code should look as follows:</p>
+<p class="image-container"><img alt="Container" src="img/5fe166329ee21fdc.png"></p>
+<p>If you run it on DartPad at this point, you should be seeing a gradient color running fro top to bottom:</p>
+<p class="image-container"><img alt="Container" src="img/5f6d6d84a4d2ea8a.png"></p>
+<p>With that in place, let&#39;s proceed with the widgets that make up this page.</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Setting up the Landing Page&#39;s Scaffold" duration="0">
+        <p>Inside of the <strong>Scaffold</strong>, let&#39;s populate both the <strong>appBar</strong> and <strong>drawer</strong> property by assigning to them an <strong>AppBar</strong> widget and a <strong>Drawer</strong> widget respectively. An <a href="https://api.flutter.dev/flutter/material/AppBar-class.html" target="_blank"><strong>AppBar</strong></a> widget - just like the name implies - is the application&#39;s topmost bar, where we can place a title, navigation icons, menu icons, etc. The <a href="https://api.flutter.dev/flutter/material/Drawer-class.html" target="_blank"><strong>Drawer</strong></a> widget is a panel that slides out horizontally from the edge of a <strong>Scaffold</strong> widget, used for menus, navigation links, etc.</p>
+<p>Your code should look as follows:</p>
+<p class="image-container"><img alt="Scaffold" src="img/3f1e8afc4cf99d7b.png"></p>
+<p>The way it looks in DartPad now (if you hit Run), is as shown below:</p>
+<p class="image-container"><img alt="Scaffold" src="img/67c5e0303cc07de4.png"></p>
+<p>If you expand the <strong>Drawer</strong> as well, it looks pretty bare now, and we want to differentiate our app from others, so we&#39;ll further customize each one of this components, starting from the <strong>AppBar</strong> widget. Let&#39;s proceed!</p>
+<h2 is-upgraded>Creating the App Bar</h2>
+<p>In this step we&#39;ll customize the <strong>AppBar</strong> widget to match our design. We&#39;ll make the one from the left look like the one on the right, where we remove the shadow, make it transparent, the menu icon adopts our app&#39;s color palette as well as showing an icon as title.</p>
+<p class="image-container"><img alt="Scaffold Custom AppBar" src="img/b9a59622f2a854df.png"></p>
+<h2 is-upgraded>Customizing the AppBar</h2>
+<p>Let&#39;s proceed by setting the following properties of the <strong>AppBar</strong> widget:</p>
+<ul>
+<li>Set the <strong>elevation</strong> property to <strong>0</strong> - this removes the shadow from the <strong>AppBar</strong></li>
+<li>Set its <strong>backgroundColor</strong> property to <strong>primaryGray</strong> to remove the default blue</li>
+<li>Set its <strong>iconTheme</strong> property to <strong>IconThemeData(color: mainYellow)</strong> to set it to our <strong>mainYellow</strong> property already defined above.</li>
+</ul>
+<p>Copy the following lines to save some typing:</p>
+<pre><code language="language-flutter" class="language-flutter">// add this inside the AppBar:
+
+elevation: 0,
+backgroundColor: primaryGray,
+iconTheme: IconThemeData(color: mainYellow)
+
+</code></pre>
+<p>Your code should look like this afterwards:</p>
+<p class="image-container"><img alt="Stack Widget" src="img/c3f4c4c178261472.png"></p>
+<h2 is-upgraded>Adding Title Icons and Placeholder Items</h2>
+<p>Let&#39;s work on adding an icon as title.</p>
+<p>Proceed to set the <strong>AppBar</strong>&#39;s <strong><em>title</em></strong> property by adding an <strong>Icon</strong> widget, wrapped inside a <strong>Center</strong> widget so it gets centered at the top, as such:</p>
+<p class="image-container"><img alt="AppBar title" src="img/762d4dca46f3cfe4.png"></p>
+<p>Running it now, it should look like this in DartPad:</p>
+<p class="image-container"><img alt="AppBar title" src="img/552c647d0fa09195.png"></p>
+<aside class="special"><p>When setting the <strong>title</strong> property of the <strong>AppBar</strong> widget, it doesn&#39;t get truly centered since when you added a <strong>Drawer</strong>, the <strong>AppBar</strong> conveniently shows a hamburger menu automatically. In order to compensate for the space occupied by the hamburger menu on the left, you should add a placeholder widget on the right side with roughly the same dimensions.</p>
+</aside>
+<p>For the title to truly look centered, make use of an additional property of the AppBar widget called <strong>actions</strong>, which is used for adding additional options on the right side of the AppBar, and we&#39;ll add another icon, this time an <strong>IconButton</strong>.</p>
+<p>We&#39;ll create a <strong>Container</strong> with 10px right margin, and inside, an <strong>IconButton</strong> with color grey. We&#39;ll add it to the <strong>actions</strong> array property of the <strong>AppBar</strong>. This will adjust the alignment on the <strong>AppBar</strong> and compensate for the added space by the hamburger menu on the left.</p>
+<p>Your code should look like this:</p>
+<p class="image-container"><img alt="AppBar actions" src="img/e11fe42a007fb06d.png"></p>
+<p>If you hit <strong>Run</strong> on DartPad to test the app so far, you should see the <strong>AppBar</strong> already customized. It shows the logo, the hamburger menu with our theme color, the title logo looks centered, as well as the <strong>IconButton</strong> added on the right via the <strong>actions</strong> property of the <strong>AppBar</strong> widget:</p>
+<p class="image-container"><img alt="DartPad AppBar Custom" src="img/41a0477dd7d50437.png"></p>
+<p>Let&#39;s proceed to customizing the <strong>Drawer</strong> widget a bit.</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Creating the Drawer" duration="0">
+        <p>We&#39;ll customize the <strong>Drawer</strong> widget a little bit. A <strong>Drawer</strong> is pretty much like any other single-child widget, in which you can add anything inside it and it will render as you please.</p>
+<p>The bottom illustration is what will look like once we customize the <strong>Drawer</strong> widget and its behavior:</p>
+<p class="image-container"><img alt="Scaffold Drawer" src="img/fbc8fe0e6dabb976.png"></p>
+<p>The following illustration is a quick schematic of what we&#39;ll be accomplishing for the <strong>Drawer</strong> widget:</p>
+<p class="image-container"><img alt="Scaffold Drawer Schematic" src="img/7188b353bd5c229a.png"></p>
+<p>It will have a solid color background with the app&#39;s logo at the bottom left corner.</p>
+<h2 is-upgraded>Customizing the Drawer</h2>
+<p>First, let&#39;s start by adding a <strong>Container</strong> widget as the child of the <strong>Drawer</strong> widget, and set its padding to 20px all around using <strong>EdgeInsets.all(20)</strong>. Set its background color to <strong>mainYellow</strong> and align its contents to the bottom left corner by setting its <strong>alignment</strong> property to <strong>Alignment.bottomLeft</strong>:</p>
+<p class="image-container"><img alt="Scaffold Drawer" src="img/c0700b2bb5d882ab.png"></p>
+<p>Now, add an <strong>Icon</strong> widget as the child of the newly added <strong>Container</strong> widget, with our specific icon (Icons.airplanemode_on), color of black and size 80. Your code should look like this:</p>
+<p class="image-container"><img alt="Scaffold Drawer" src="img/5046860673980337.png"></p>
+<p>And with that, you should be all set with customizing the <strong>Drawer</strong> widget. You can feel free to add further elements and links to your own Drawer widgets, since it provides a lot of flexibility for customization. Let&#39;s keep moving!</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Populate the body of the Landing Page / Header" duration="0">
+        <p>Now let&#39;s continue laying down the items that make up the Landing Page Widget&#39;s body, so we&#39;ll start with the <strong>Header</strong> widget.</p>
+<h2 is-upgraded>Implementing the Header Widget</h2>
+<p>The following is a schematic view of what we&#39;ll be tackling in the following section:</p>
+<p class="image-container"><img alt="Header" src="img/6c40eb69ef244351.png"></p>
+<p>Let&#39;s proceed!</p>
+<p>Back in the <strong>LandingPage</strong> widget, add a <strong>Column</strong> widget as the child of the <strong>body</strong>&#39;s <strong>Container</strong> widget. Set its <strong>crossAxisAlignment</strong> property to <strong>CrossAxisAlignment.stretch</strong> so it stretches horizontally.</p>
+<p>Your code should look as follows:</p>
+<p class="image-container"><img alt="Header" src="img/ffbde39ad5656876.png"></p>
+<p>Inside the newly added <strong>Column</strong> widget&#39;s <strong>children</strong> property, add the placeholder widget called <strong>HeaderWidget</strong>.</p>
+<p class="image-container"><img alt="Header" src="img/5e335002605666ec.png"></p>
+<aside class="warning"><p>Don&#39;t worry about the error showing on the <strong>HeaderWidget</strong> widget - it&#39;s just that we haven&#39;t created it yet. We&#39;ll do that right now.</p>
+</aside>
+<h2 is-upgraded>Create the HeaderWidget widget class</h2>
+<aside class="special"><p>Before proceeding with the <strong>HeaderWidget</strong> widget class, add a section right under the <strong>LandingPage</strong> class definition, and call it <strong>WIDGETS</strong> - it will allow us to place and define all our widgets in this section and you&#39;ll be able to find them easily.</p>
+</aside>
+<p>Under the <strong>LandingPage</strong> class, add a comment for the widgets section:</p>
+<pre><code language="language-flutter" class="language-flutter">class LandingPage extends StatelessWidget { ... }
+
+//-----WIDGETS-----
+
+</code></pre>
+<p>Under this comment, create the class corresponding to the <strong>AppHeader</strong> widget. Add the following elements as you create the initial scaffolding for it:</p>
+<ul>
+<li>Create it as a StatelessWidget</li>
+<li>Override its <strong>build</strong> method as usual</li>
+<li>In its <strong>build</strong> method, return a <strong>Container</strong> widget</li>
+<li>For testing purposes, add a <strong>Text</strong> widget as a child of the <strong>Container</strong> widget with a <strong>TextStyle</strong> containing the <strong>color</strong> property as <strong>Colors.white</strong>. Add the text <strong>header</strong> in it.</li>
+</ul>
+<p>Here&#39;s the code if you want to save some typing:</p>
+<pre><code language="language-flutter" class="language-flutter">class HeaderWidget extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Text(&#39;header&#39;, style: TextStyle(color: Colors.white));
+  }
+}
+
+</code></pre>
+<p>Your code should look as follows:</p>
+<p class="image-container"><img alt="AppHeader" src="img/21f0caa45441329d.png"></p>
+<p>If you hit <strong>Run</strong> on DartPad now, you should be able to see the text &#34;<strong>header</strong>&#34; in white, showing right in the slot where the header is supposed to show, as in the screenshot below:</p>
+<p class="image-container"><img alt="Header" src="img/a2aecfe06e7c46.png"></p>
+<p>Let&#39;s continue elaborating on this widget.</p>
+<p>This is what we&#39;ll focus on - building the following piece of the structure:</p>
+<p class="image-container"><img alt="Header" src="img/7abb2143d66ad8e3.png"></p>
+<p>Replace the <strong>Container</strong> widget with the <strong>Text</strong> widget by a <strong>Column</strong> widget. As you see above, we want to lay out our items in a vertical fashion, so we need a column for that. Set its <strong>crossAxisAlignment</strong> to <strong>CrossAxisAlignment.start</strong> to align its children to the left:</p>
+<p class="image-container"><img alt="Header" src="img/1cf618862683cb36.png"></p>
+<p>Let&#39;s add children.</p>
+<h3 is-upgraded>Add the Header Labels</h3>
+<p>We&#39;ll add the labels shown in the design, also laid out one of top of each other. Since we want to wrap them as a single unit with some breathing around them, let&#39;s add them inside yet another <strong>Column</strong> widget, with a <strong>Padding</strong> widget wrapping them.</p>
+<p>Add it as follows:</p>
+<ul>
+<li><strong>Padding</strong> widget, with padding top, left and right - 30px on each side</li>
+<li><strong>Column</strong> widget, with left alignment (crossAxisAlignment.start)</li>
+<li>Two <strong>Text</strong> widgets:  <ul>
+<li>Top <strong>Text</strong> widget with color white, 30px font size and bold</li>
+<li>Bottom <strong>Text</strong> widget with color <strong>mainYellow</strong>, 30px font size and bold</li>
+</ul>
+</li>
+</ul>
+<p>Here&#39;s the code if you want to save some keystrokes:</p>
+<pre><code language="language-flutter" class="language-flutter">// add it as the first children of the Column widget
+
+Padding(
+  padding: EdgeInsets.only(top: 30, left: 30, right: 30),
+  child: Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+      Text(&#39;Where do you&#39;, style: TextStyle(color: Colors.white, fontSize: 30, fontWeight: FontWeight.bold)),
+      Text(&#39;want to go?&#39;, style: TextStyle(color: mainYellow, fontSize: 30, fontWeight: FontWeight.bold))
+    ]
+  ),
+),
+
+</code></pre>
+<p>Your code should look like this:</p>
+<p class="image-container"><img alt="Header" src="img/92a38833a711db1c.png"></p>
+<p>Running it on DartPad, you should be seeing the following:</p>
+<p class="image-container"><img alt="Header" src="img/1ba0944e0cbfaa26.png"></p>
+<h3 is-upgraded>Implementing the Placeholder Search Bar</h3>
+<p>This is the piece of the structure that we&#39;ll be tackling now:</p>
+<p class="image-container"><img alt="Header" src="img/3ca983b2a6f6a1c9.png"></p>
+<p>Start by adding a second <strong>Padding</strong> widget to the <strong>HeaderWidget</strong>&#39;s main <strong>Column</strong> widget, right below the existing one. Add 30px of padding, left and right only:</p>
+<p class="image-container"><img alt="Header" src="img/5d44c021151e4011.png"></p>
+<p>As the <strong>Padding</strong> widget&#39;s child, add a <strong>Container</strong> widget with the following specs:</p>
+<ul>
+<li>padding of 15px all around (EdgeInsets.all(15))</li>
+<li>decoration with BoxDecoration:  <ul>
+<li>borderRadius of 50px (BorderRadius.circular(50))</li>
+<li>background color of <strong>lightGray</strong></li>
+</ul>
+</li>
+<li>margin of 20px, top and bottom only</li>
+</ul>
+<p>We want to add that rounded-corner look to that widget structure to make it look like a field, so that&#39;s what we&#39;re achieving with this code. You can grab the code for the <strong>Container</strong> to help you with the typing:</p>
+<pre><code language="language-flutter" class="language-flutter">// add this as the child of the Padding widget
+
+Container(
+  padding: EdgeInsets.all(15),
+  decoration: BoxDecoration(
+    borderRadius: BorderRadius.circular(50),
+    color: lightGray
+  ),
+  margin: EdgeInsets.only(top: 20, bottom: 20)
+)
+
+</code></pre>
+<p>Your <strong>Padding</strong> widget with the child <strong>Container</strong> widget should look like this:</p>
+<p class="image-container"><img alt="Header" src="img/83efbcf674fbef13.png"></p>
+<p>Let&#39;s add now the items inside this <strong>Container</strong>. Let&#39;s add an <strong>Icon</strong> and a <strong>Text</strong> widget with some spacing in between, in a horizontal layout, therefore we&#39;ll use a <strong>Row</strong> widget for this purpose.</p>
+<p>Add a <strong>Row</strong> widget, and as its children, add an <strong>Icon</strong> widget (Icons.search), with color grey. Next to it simulate some spacing by adding a <strong>SizedBox</strong> widget, 10px width. Last, add a <strong>Text</strong> widget with color grey.</p>
+<p>Your code should look as follows:</p>
+<p class="image-container"><img alt="Header" src="img/8c5e4fcf4a1253ef.png"></p>
+<p>If you hit Run in DartPad at this point, you should see the following output:</p>
+<p class="image-container"><img alt="Header" src="img/a0e9f1f16451d7a7.png"></p>
+<p>Things are taking a very nice shape! Let&#39;s keep rolling!</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Populate the body of the Landing Page / ListView" duration="0">
+        <p>We&#39;ll work now with the middle portion of the layout, which consists of a list of card widgets with scrolling capabilities, taking up most of the body of this page. We&#39;ll call it <strong>AttractionListView</strong> and we&#39;ll create it as a custom widget as well. Each card in turn will also be a custom widget (called <strong>AttractionCard</strong>) which we&#39;ll dig into further down.</p>
+<p>The following structure is what we&#39;ll be tackling:</p>
+<p class="image-container"><img alt="Header" src="img/7202058ca59a7b92.png"></p>
+<p>Let&#39;s go back to our <strong>LandingPage</strong> widget, and inside the body&#39;s <strong>Column</strong>, under the <strong>HeaderWidget</strong> widget, add a new placeholder widget, and call it <strong>AttractionListView</strong>. Same drill - we&#39;ll develop it further in a bit:</p>
+<p class="image-container"><img alt="Header" src="img/3fc8ba0457f53de8.png"></p>
+<p>Now let&#39;s create the boilerplate class corresponding to this widget, with some sample text to show. Grab the code below and add it under the <strong>HeaderWidget</strong> class, under the <strong>WIDGETS</strong> section:</p>
+<pre><code language="language-flutter" class="language-flutter">class AttractionListView extends StatelessWidget {
+  
+  @override
+  Widget build(BuildContext context) {
+    return Text(&#39;attraction list view&#39;, style: TextStyle(color: Colors.white));
+  }
+}
+
+</code></pre>
+<p>Your code should look as follows:</p>
+<p class="image-container"><img alt="Header" src="img/b6605761f3e1843.png"></p>
+<p>And if you hit Run in DartPad, make sure you see the text below as well (just to make sure things are hooked up):</p>
+<p class="image-container"><img alt="Header" src="img/d50f931d1999748.png"></p>
+<p>Let&#39;s further elaborate on this structure, and focus for now on on the <strong>AttractionListView</strong> custom widget.</p>
+<h2 is-upgraded>Adding Models that feed data to the AttractionListView</h2>
+<p>Before we start, you might be wondering where to get the images and the information about the famous attraction of the world, in our case - bridges. For that, we&#39;ll have to mock it up, and the data to be in a structured way. We&#39;ll create Dart models that will hold this mocked data.</p>
+<h3 is-upgraded>Creating an AttractionModel class</h3>
+<p>We need to hold the data corresponding to a single attraction. For this, we will create a simple class called <strong>AttractionModel</strong>, which will hold the following information:</p>
+<ul>
+<li>A <strong>imgPath</strong> property, type <strong><em>String</em></strong>, to hold the URL path to the picture of the mount</li>
+<li>A <strong>name</strong> property, type <strong><em>String</em></strong>, which will hold the name of the mount</li>
+<li>A <strong>description</strong> property, type <strong><em>String</em></strong>, which will hold the description of the mount</li>
+<li>A <strong>location</strong> property, also type <strong><em>String</em></strong>, which will have the name of the location of the mount.</li>
+</ul>
+<p>Write a class called <strong>AttractionModel</strong> at the end of this file, adding the properties above. Add a constructor for it and initialize the properties with some default empty values.</p>
+<p>Here&#39;s the code for it so you can save some typing:</p>
+<pre><code language="language-flutter" class="language-flutter">class AttractionModel {
+  
+  String? imgPath;
+  String? name;
+  String? location;
+  String? description;
+  
+  AttractionModel({
+    this.imgPath,
+    this.name,
+    this.location,
+    this.description
+  });
+}
+
+</code></pre>
+<aside class="special"><p>It is best practice to group related entities within the same area of code; in our case, I&#39;m adding all pages within a section demarcated by the comment &#34;//—PAGES—&#34; and so on. I added a section called &#34;//—MODELS—&#34; and I&#39;m adding all my models under that section for easy finding and organization.</p>
+</aside>
+<h3 is-upgraded>Creating Mocked Data from the Created Model</h3>
+<p>Now that we have a way to structure the data we want to show (by creating a model class that will hold the values), we&#39;ll mock some data and store it in a collection so we can later feed it to our <strong><em>ListView</em></strong> widget.</p>
+<p>Create a list of <strong><em>AttractionModel</em></strong> items, called <strong>attractions</strong>; make it <strong>final</strong> so we can assign default values right from the start. Populate it with the following values (you can add your own data, but for the sake of this workshop, you can grab the values provided below). Add this collection at the top of the file, in the <strong>GLOBAL VARIABLES SECTION</strong> (if you created a section for them), otherwise just add them at the top of the <strong>main</strong> method:</p>
+<aside class="special"><p>Feel free to copy / paste it so you can avoid lots of tedious typing of mocked data.</p>
+</aside>
+<pre><code language="language-flutter" class="language-flutter">final List&lt;AttractionModel&gt; attractions = [
+  AttractionModel(
+    imgPath: &#39;https://images.pexels.com/photos/260590/pexels-photo-260590.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=3&amp;h=750&amp;w=1260&#39;,
+    name: &#39;Golden Gate Bridge&#39;,
+    location: &#39;San Francisco, CA&#39;,
+    description: &#39;The Golden Gate Bridge is a suspension bridge spanning the Golden Gate, the one-mile-wide strait connecting San Francisco Bay and the Pacific Ocean.&#39;
+  ),
+  AttractionModel(
+    imgPath: &#39;https://images.pexels.com/photos/5627275/pexels-photo-5627275.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=3&amp;h=750&amp;w=1260&#39;,
+    name: &#39;Brooklyn Bridge&#39;,
+    location: &#39;Brooklyn, NY&#39;,
+    description: &#39;The Golden Gate Bridge is a suspension bridge spanning the Golden Gate, the one-mile-wide strait connecting San Francisco Bay and the Pacific Ocean.&#39;
+  ),
+  AttractionModel(
+    imgPath: &#39;https://images.pexels.com/photos/5241381/pexels-photo-5241381.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=3&amp;h=750&amp;w=1260&#39;,
+    name: &#39;London Bridge&#39;,
+    location: &#39;London, UK&#39;,
+    description: &#39;The Golden Gate Bridge is a suspension bridge spanning the Golden Gate, the one-mile-wide strait connecting San Francisco Bay and the Pacific Ocean.&#39;
+  ),
+  AttractionModel(
+    imgPath: &#39;https://images.pexels.com/photos/1680247/pexels-photo-1680247.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=650&amp;w=940&#39;,
+    name: &#39;Harbour Bridge&#39;,
+    location: &#39;Sydney, AU&#39;,
+    description: &#39;The Golden Gate Bridge is a suspension bridge spanning the Golden Gate, the one-mile-wide strait connecting San Francisco Bay and the Pacific Ocean.&#39;
+  )
+];
+
+</code></pre>
+<p>Now let&#39;s work on the structure of the <strong>AttractionListView</strong></p>
+<p>Replace the <strong>Text</strong> widget being returned from the <strong>AttractionListView</strong> widget by an <strong>Expanded</strong> widget.  We&#39;ll pretty much wrap everything inside this <a href="https://api.flutter.dev/flutter/widgets/Expanded-class.html" target="_blank"><strong>Expanded</strong></a> widget, which tells its parent (the <strong>Column</strong> widget that contains this custom widget) that the widget inside it will occupy most of the column&#39;s space; the rest of the widgets will only get the space allocated to them based on their dimensions.</p>
+<p class="image-container"><img alt="Header" src="img/b452d6d5dc075f4d.png"></p>
+<p>The <strong>Expanded</strong> widget must have a child, so let&#39;s proceed by adding the next item in the structure: a <strong>ListView</strong> widget.</p>
+<aside class="special"><p>When we wrap widgets that are in a Column or Row inside an <strong>Expanded</strong> widget, is because they will occupy most of the real estate of the parent; in this case, we want the <strong>AttractionListView</strong> widget to take most of the space on its <strong>Column</strong> parent; then let the other sibling widgets fight for the remaining space.</p>
+</aside>
+<p>Let&#39;s add as the immediate child of the <strong>Expanded</strong> widget a <a href="https://api.flutter.dev/flutter/widgets/ListView-class.html" target="_blank"><strong>ListView</strong></a> widget, which provides a scrollable list of widgets arranged linearly.</p>
+<aside class="special"><p>The <strong>ListView</strong> widget is the most commonly used scrolling widget. For more info, visit this <a href="https://api.flutter.dev/flutter/widgets/ListView-class.html" target="_blank">link</a>.</p>
+</aside>
+<p>There are many ways in which you can instantiate a <strong>ListView</strong> widget, but we&#39;ll use a convenient constructore called <strong>builder</strong>, which creates a scrollable, linear array of widgets that are created on demand.</p>
+<aside class="special"><p>The <strong>ListView.builder</strong> constructor is appropriate for list views with a large (or infinite) number of children because the builder is called only for those children that are actually visible.</p>
+</aside>
+<p>Our <strong>ListView.builder</strong> constructor takes several parameters, but we&#39;ll only use a few of them:</p>
+<ul>
+<li>scrollDirection: set the direction in which we want users to scroll through items. Default is vertical, but we want horizontal scrolling, hence setting its value to <strong>Axis.horizontal</strong>.</li>
+<li>itemCount: the number of items that the <strong>ListView</strong> will render for us. Notice we&#39;re using the length of the <strong>attractions</strong> collection we created previously.</li>
+<li>itemBuilder: callback that gets triggered for as many items you set in <strong>itemCount</strong> (one for every item in the <strong>attractions</strong> collection); returns widgets created on demand as they become visible, for efficiency.</li>
+<li>padding: internal padding added to the <strong>ListView</strong>; well do only 10px of left padding just to add some symmetry.</li>
+</ul>
+<p>Grab the code below to save some keystrokes:</p>
+<pre><code language="language-flutter" class="language-flutter">// add the following code as the child of the Expanded widget:
+
+child: ListView.builder(
+  padding: EdgeInsets.only(left: 10),
+  itemCount: attractions.length,
+  scrollDirection: Axis.horizontal,
+  itemBuilder: (context, index) {
+    
+    return Container();
+  }
+)
+
+</code></pre>
+<p>Your code should look as follows:</p>
+<p class="image-container"><img alt="Header" src="img/71c4cae3af9cc159.png"></p>
+<aside class="warning"><p>Notice we are returning an empty <strong>Container</strong> widget in the body of the <strong>itemBuilder</strong> callback; we&#39;ll build a widget for each of the items in the <strong>attractions</strong> collection, using the <strong><em>index</em></strong> property provided to the <strong>itemBuilder</strong> callback.</p>
+</aside>
+<p>Now, for as many items that are visible in the <strong>ListView</strong> widget&#39;s viewport, it invokes the <strong>itemBuilder</strong> callback, passing the <strong><em>context</em></strong> and the <strong><em>index</em></strong> corresponding to the <strong><em>ListView</em></strong> item in question. We&#39;ll use those parameters to build each widget based on the data provided in the <strong>attractions</strong> collection.</p>
+<h2 is-upgraded>Create the AttractionCard widget</h2>
+<p>Inside of the <strong>ListView.builder</strong> callback, is where we&#39;ll generate each card, per attraction available in our collection. Start by fetching the attraction model in the current iteration by using the <strong>index</strong> value provided in the callback. Hold the value in a variable called <strong>currentAttraction</strong>. Add it right before the <strong>return</strong> statement:</p>
+<p class="image-container"><img alt="ListView" src="img/eacea91153286691.png"></p>
+<p>With that in place, now let&#39;s focus on the widget that will consume this attraction model. We&#39;ll create a custom widget class called <strong>AttractionCard</strong>. Grab the code below and paste it under the <strong>WIDGETS</strong> section, or anywhere at the end of the file works as well:</p>
+<pre><code language="language-flutter" class="language-flutter">class AttractionCard extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container();
+  }
+}
+
+</code></pre>
+<p>Now let&#39;s focus only on the <strong>AttractionCard</strong> widget moving forward.</p>
+<p>To this class, add the property that we&#39;ll inject into it in order to use it while rendering this widget. Make the property type <strong>AttractionModel</strong>, called **attractionModel. Create a corresponding constructor for it as well, since we&#39;ll be feeding it via the constructor; add it on top of the build method.</p>
+<p>Your code should look like this:</p>
+<p class="image-container"><img alt="Card" src="img/b37ddd0b060074f5.png"></p>
+<p>This is the structure we&#39;ll be working on for this widget:</p>
+<p class="image-container"><img alt="Card" src="img/b10bbbf4d8728e75.png"></p>
+<p>Let&#39;s start by adding a fixed width of 180px to the existing <strong>Container</strong> inside the <strong>AttractionCard</strong> widget, as well as margin all around of 10px:</p>
+<p class="image-container"><img alt="Card" src="img/d196b352ddccff51.png"></p>
+<p>Now, add a child to the <strong>Container</strong> widget - a <strong>Stack</strong> widget. We use a Stack mostly to add widgets one on top of each other, in a stack fashion. We&#39;ll be adding the icon and the circular progress indicator on top of each other but with different alignments.</p>
+<p class="image-container"><img alt="Card" src="img/edc30a16e1867886.png"></p>
+<p>Proceed to add children to the Stack widget - in our case, the first widget will be the background image. We&#39;ll add a <strong>Container</strong> widget, which will serve as the host of the background image (a <strong>NetworkImage</strong>), pulling the value from the <strong>attractionModel</strong> model injected.</p>
+<p>Grab the code below and copy / paste it - if you feel lazy not to type it ;) :</p>
+<pre><code language="language-flutter" class="language-flutter">// add this as the first child in the Stack list of children:
+
+Container(
+  decoration: BoxDecoration(
+    image: DecorationImage(
+      image: NetworkImage(attractionModel!.imgPath!),
+      fit: BoxFit.cover
+    )
+  )
+)
+
+</code></pre>
+<p>Notice the usage of the <strong>BoxDecoration</strong>&#39;s <strong>image</strong> property, where we set it as a <strong>NetworkImage</strong>, and using the <strong>attractionModel</strong>&#39;s <strong>imgPath</strong> property to pull the image information stored in it. We use <strong>BoxFit.cover</strong> to make it fill the space occupied by the <strong>Container</strong> without distorting the image&#39;s aspect ratio.</p>
+<p>Your code should look like this afterwards:</p>
+<p class="image-container"><img alt="Card" src="img/4486348e6200db19.png"></p>
+<p>Add the second child to the Stack widget - another <strong>Container</strong> widget, this one representing the gradient effect, achieved by using the same <strong>decoration</strong> property used for the background image, but using the <strong>gradient</strong> property.</p>
+<p>We&#39;re adding a bit of gradient in this <strong>Stack</strong> so when we place the text content, we can read it better and provide better contrast. We want the gradient to start at the top center and stops at the bottom center of the <strong>Stack</strong> with a smooth transition from transparent to opaque black.</p>
+<p>Grab the code below to save some typing:</p>
+<pre><code language="language-flutter" class="language-flutter">// add this as the second child of the Stack:
+
+Container(
+  decoration: BoxDecoration(
+    gradient: LinearGradient(
+      colors: [
+        Colors.transparent,
+        Colors.black.withOpacity(0.5)
+      ],
+      begin: Alignment.topCenter,
+      end: Alignment.bottomCenter
+    )
+  )
+)
+
+</code></pre>
+<p>Let&#39;s add now the content that goes on top of everything in this <strong>Stack</strong> widget - the labels. We&#39;ll lay them out vertically, and for that we&#39;ll use a <strong>Column</strong>. We want to align its items at the bottom vertically (MainAxisAlignment.end), and at the left horizontally (CrossAxisAlignment.start).</p>
+<p>As the <strong>Column</strong>&#39;s children, we&#39;ll add two <strong>Text</strong> widgets, one displaying the name of the attraction (attractionModel.name), color white, 18px font size, and bold; the other displaying the location (attractionModel.location) with color <strong>mainYellow</strong>, divided by some space in between (simulated using a <strong>SizedBox</strong> with 10px height).</p>
+<p>Code provided below:</p>
+<pre><code language="language-flutter" class="language-flutter">// add this as the third child in the Stack
+
+Column(
+  crossAxisAlignment: CrossAxisAlignment.start,
+  mainAxisAlignment: MainAxisAlignment.end,
+  children: [
+    Text(attractionModel!.name!, style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold)),
+    SizedBox(height: 10),
+    Text(attractionModel!.location!, style: TextStyle(color: mainYellow))
+  ]
+)
+
+</code></pre>
+<p>Let&#39;s test what we&#39;ve build so far, and we&#39;ll tweak it more in a bit.</p>
+<p>Back to the <strong>AttractionListView</strong> widget, replace the returned empty <strong>Container</strong> widget in the <strong>ListView.builder</strong>&#39;s <strong>itemBuilder</strong> callback, by our newly created <strong>AttractionCard</strong> widget, newing up an instance and passing the <strong>currentAttraction</strong> via its constructor, as follows:</p>
+<p class="image-container"><img alt="Card" src="img/a419ecdef5c0a6db.png"></p>
+<p>If you run it in DartPad, you should see the following outcome:</p>
+<p class="image-container"><img alt="Card" src="img/d0658aebecc18f5f.png"></p>
+<p>We need to deal with the roundness of each of the cards&#39; corners, as well as applying some padding to the <strong>Column</strong> widget that contains the <strong>Text</strong> widgets. Let&#39;s proceed.</p>
+<p>Back to the <strong>AttractionCard</strong> widget, first wrap the whole <strong>Stack</strong> widget inside a <strong>ClipRRect</strong> widget. This is the responsible of adding the rounded corners around the <strong>Stack</strong> and all its children. Apply a <strong>borderRadius</strong> of 25px to the <strong>ClipRRect</strong>, as follows:</p>
+<p class="image-container"><img alt="Card" src="img/919e7b1b27ec6e7f.png"></p>
+<p>Running it again on DartPad, now we see how the whole <strong>Stack</strong> gets clipped:</p>
+<p class="image-container"><img alt="Card" src="img/afaf4ccf4cb79ac8.png"></p>
+<p>For the spacing on the text, simply wrap the <strong>Column</strong> widget in the <strong>Stack</strong> inside a <strong>Padding</strong> widget. Add padding inside all around of 30px, as shown below:</p>
+<p class="image-container"><img alt="Card" src="img/47942fab9eca44a9.png"></p>
+<p>Running it one more time on DartPad, now we see the proper spacing being applied on the text:</p>
+<p class="image-container"><img alt="Card" src="img/781ce55ef0b72c1b.png"></p>
+<p>Looking good so far! Let&#39;s work on the last widget on this page - the <strong>BottomBar</strong> widget!</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Populate the body of the Landing Page / BottomBar" duration="0">
+        <aside class="special"><p>For this widget, we won&#39;t be hooking up a tab navigation strategy to it; this is ONLY dealing with the layout of a custom bottom bar. In future labs, we&#39;ll be dealing with custom tab navigation.</p>
+</aside>
+<p>We&#39;re ready to tackle the layout of the last widget of the <strong>LandingPage</strong> widget, which we&#39;re calling the <strong>BottomBarWidget</strong>, which is nothing more than a custom bar that can be used as tab navigation for this page, and switch between different views based on what the user has clicked. We will only do the layout and not perform any navigation, for the sake of this tutorial that deals with layout building.</p>
+<h2 is-upgraded>BottomBarWidget</h2>
+<p class="image-container"><img alt="AppBottomBar" src="img/1dfe6408d07770c2.png"></p>
+<p>For this widget, we&#39;ll be maintaining state within itself, hence this widget will inherit from <strong>StatefulWidget</strong>. Every time a user clicks on one of the bottom bar options, the widget&#39;s state changes - the state of which one is selected - which triggers a rebuild, and renders accordingly. That&#39;s in essence how StatefulWidgets work. More on <strong><em>StatefulWidgets </em></strong><a href="https://api.flutter.dev/flutter/widgets/StatefulWidget-class.html" target="_blank">here</a>.</p>
+<p>Let&#39;s show the schematic view of this widget, so we&#39;ll have a concrete idea of its composition and how we&#39;ll build it:</p>
+<p class="image-container"><img alt="AppBottomBar" src="img/d295793f956f2a7f.png"></p>
+<h3 is-upgraded>Creating the BottomBarWidget widget class / Adding Placeholder</h3>
+<p>As in the previous occasions, we first add a placeholder widget instance, then we create it. We&#39;ll do the same here.</p>
+<p>Back in the <strong>LandingPage</strong> widget, inside the <strong>Column</strong> inject, right underneath the <strong>AttractionListView</strong> widget we created earlier, add our upcoming widget <strong>BottomBarWidget</strong>.</p>
+<p class="image-container"><img alt="AppBottomBar" src="img/d3b9637069b6d6dc.png"></p>
+<p>Now, go to the <strong>WIDGETS</strong> section (if you created one, otherwise let&#39;s work right under the <strong>AttractionCard</strong> widget we created earlier). Creating a <strong><em>StatefulWidget</em></strong> involves a two-step process.</p>
+<p>A widget that maintains its state and extending <strong>StatefulWidget</strong> is composed of two classes, the widget class that extends <strong>StatefulWidget</strong> and the <strong>State</strong> class.</p>
+<p>First step is creating a new class that extends <a href="https://api.flutter.dev/flutter/widgets/StatefulWidget-class.html" target="_blank"><strong>StatefulWidget</strong></a> (in our case, a class called <strong>BottomBarWidget</strong>).</p>
+<p>In this class, you will override a special method called <strong>createState</strong>, which instantiates the companion <strong>State</strong> class, which by convention, it&#39;s usually named <strong>&lt;NAME_OF_WIDGET&gt;State</strong> (i.e. <strong><em>BottomBarWidgetState</em></strong> - we haven&#39;t created it yet, but we will in a minute).</p>
+<p>Second step is creating the class that will hold the state for this widget, which we&#39;ll call <strong>AppBottomBarState</strong> - this is the one that contains the build method, and every time the state changes, the build method gets triggered, rebuilding the widget, keeping it in sync with the data. This class extends <a href="https://api.flutter.dev/flutter/widgets/State-class.html" target="_blank"><strong>State</strong></a> and must be of type of its corresponding StatefulWidget (i.e. State&lt;AppBottomBar&gt;) so as to establish the relationship between the widget and its state.</p>
+<p>As in the past, override the <strong>build</strong> method, add some dummy <strong>Container</strong> with a <strong>Text</strong> widget, just for testing. Add the text &#34;Bottom Bar&#34; to the <strong>Text</strong> widget.</p>
+<p>Right off the bat, the <strong>State</strong> class looks pretty much like a <strong>StatefulWidget</strong> class, with an overridden <strong>build</strong> method - we&#39;ll see down below what makes it so special.</p>
+<p>Your class(es) should look as follows (grab the code to save typing):</p>
+<pre><code language="language-flutter" class="language-flutter">class BottomBarWidget extends StatefulWidget {
+  @override
+  State&lt;BottomBarWidget&gt; createState() =&gt; BottomBarWidgetState();
+}
+
+class BottomBarWidgetState extends State&lt;BottomBarWidget&gt; {
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Text(&#39;Bottom Bar&#39;, style: TextStyle(color: Colors.white))
+    );
+  }
+}
+
+</code></pre>
+<p>If you hit the <strong>Run</strong> button on DartPad at this point in time, it should yield the following output in the preview panel on the right (see the text &#34;Bottom Bar&#34; at the bottom), which proves that things are hooked up and the widget is showing:</p>
+<p class="image-container"><img alt="AppBottomBar" src="img/5943e8e878a04576.png"></p>
+<p>Let&#39;s dig in!</p>
+<h2 is-upgraded>Creating a Model for the Bottom Bar Item Data</h2>
+<p>Before we proceed further, we want to create a model that holds the data corresponding to each one of the bottom bar items (i.e. we want to show an icon, a label, a flag whether it is selected or not, etc.). This model will also hold information about the state we&#39;re keeping track of - which of the selected bottom bar items is selected.</p>
+<p>Let&#39;s create a model class called <strong>BottomBarModel</strong>, which will be just a regular class that will hold the following properties:</p>
+<ul>
+<li><strong>icon</strong>: type <strong><em>IconData</em></strong>, represents the icon to show for each item in the bottom bar</li>
+<li><strong>isSelected</strong>: type <strong><em>bool</em></strong>, holds the value of whether this is the currently selected item in the bottom bar</li>
+</ul>
+<aside class="special"><p>You may have already created a section for your models in this file (demarcated by a comment &#34;//—–MODELS—–&#34;); if you did, then add this model under that section, otherwise, at the end of the file is fine.</p>
+</aside>
+<p>Your <strong>BottomBarModel</strong> model class should look as follows (grab the code as well and copy / paste it):</p>
+<pre><code language="language-flutter" class="language-flutter">class BottomBarModel {
+  IconData? icon;
+  bool? isSelected;
+
+  BottomBarModel({ this.icon, this.isSelected });
+}
+
+</code></pre>
+<p>Now that we have a way to represent each of the bottom bar items, let&#39;s create a collection of these items inside of the State so we can keep track of which one is selected.</p>
+<p>Proceed to the <strong>BottomBarWidgetState</strong> class; inside of the class, above the build method, create a property called <strong>barItems</strong>; make it a <strong>List</strong> of <strong>BottomBarModel</strong> models, and initialize it with an empty array, as follows:</p>
+<p class="image-container"><img alt="AppBottomBar" src="img/a2a3f83450b9f927.png"></p>
+<p>Now let&#39;s populate it with some mocked data:</p>
+<aside class="special"><p>Feel free to copy / paste it in order to avoid tedious typing!</p>
+</aside>
+<pre><code language="language-flutter" class="language-flutter">// populate the list of BottomBarModel items
+
+final List&lt;BottomBarModel&gt; bottomBarListItems = [
+  BottomBarModel(icon: Icons.explore_outlined, isSelected: true),
+  BottomBarModel(icon: Icons.favorite_border, isSelected: false),
+  BottomBarModel(icon: Icons.comment_outlined, isSelected: false),
+  BottomBarModel(icon: Icons.account_circle_outlined, isSelected: false),
+];
+
+</code></pre>
+<p>Notice that the top item inserted has the <strong>isSelected</strong> property as <strong>true</strong> since we want the first item to display as selected by default.</p>
+<p>Back in the <strong>BottomBarWidgetState</strong> class, assign this hardcoded list of models (bottomBarListItems) to the property we created locally list of bottom bar items (_bottomBarItems).</p>
+<p class="image-container"><img alt="AppBottomBar" src="img/20fb72450150db00.png"></p>
+<p>Nice. Let&#39;s build up on that existing <strong>Container</strong> widget returned by the <strong>build</strong> method of the <strong>BottomBarWidgetState</strong> class.</p>
+<p>Let&#39;s set some of its properties to the following values:</p>
+<ul>
+<li>margin: 20px top and bottom</li>
+<li>padding: 20px all around</li>
+</ul>
+<p class="image-container"><img alt="AppBottomBar" src="img/5a80f637b4a07fa8.png"></p>
+<aside class="special"><p>From this point forward, we&#39;ll be contentrating only on the <strong>Container</strong> object and showing you what&#39;s inside that block of code as we build it, for brevity and space.</p>
+</aside>
+<p>Replace the contents of the <strong>Container</strong> widget (the <strong>Text</strong> widget) by a <strong>Row</strong> widget (the items in the bottom bar will be laid out horizontally, evenly spaced out).</p>
+<p>Add a <strong>Row</strong> widget, and set its <strong>mainAxisAlignment</strong> property to <strong>MainAxisAlignment.spaceAround</strong> - this will make its children space themselves accordingly, with equal amount of space distributed among them. Also set its <strong>crossAxisAlignment</strong> property to <strong>CrossAxisAlignment.center</strong> so they are centered vertically.</p>
+<p class="image-container"><img alt="AppBottomBar" src="img/913132d25a7f31a.png"></p>
+<p>We&#39;ll generate the children of the <strong>Row</strong> widget as a list, based on the values available in the collection called <strong><em>bottomBarItems</em></strong> created earlier. We&#39;ll loop through these items and generate a corresponding widget from each of the items available.</p>
+<p>The factory method available in the <strong>List</strong> class called <strong>generate</strong> will simplify the looping throught the items in the <strong>barItems</strong> collection. This factory method takes two parameters: the length of the list (provided by <strong><em>bottomBarItems</em></strong></p>
+<p><strong>.length</strong>) and a callback, which will be executed for each of the items in the collection, and will pass an index into the callback - the index corresponding to each item in the collection. Assign this to the <strong>children</strong> property of the <strong>Row</strong> widget.</p>
+<p>Grab the code below:</p>
+<pre><code language="language-flutter" class="language-flutter">// set this as the children of the Row widget:
+
+children: List.generate(
+  _bottomBarItems.length, (index) {
+    // call this method for each of the items
+  }
+)
+
+</code></pre>
+<p>Now, for each of the items in the <strong><em>bottomBarItems</em></strong> collection, we will generate an <strong>IconButton</strong> and change its color, depending on whether the current item in the iteration has the <strong>isSelected</strong> property set to <strong>True</strong> or not.</p>
+<p>First, grab the current bar item from the iteration (using the <strong>index</strong> supplied to the callback method) and grab the corresponding item from the <strong><em>bottomBarItems</em></strong> collection using this index. We&#39;ll also create a local variable called <strong>barItemWidget</strong> to hold the resulting widget to render based on that logic:</p>
+<aside class="special"><p>We&#39;ll focus for a bit only on the callback in the List.generate method, for sake of brevity and space</p>
+</aside>
+<p>After pulling a model from the <strong>_bottomBarItems</strong> collection and saving it into the <strong>barItemWidget</strong> property, let&#39;s return out of this callback an <strong>IconButton</strong> widget, which we&#39;ll populate using the information stored in <strong>barItemWidget</strong>.</p>
+<p>Your whole callback should look like this:</p>
+<p class="image-container"><img alt="AppBottomBar" src="img/53886e4428917b7e.png"></p>
+<h3 is-upgraded>Triggering the widget to rebuild by calling <strong>setState</strong></h3>
+<p>When a user taps on one of the bar items not selected, it will change its flag to <strong>isSelected == true</strong>; this is an indication that this widget&#39;s state has changed and that we want the widget visualization to sync with the data. The <strong>Icon</strong> button has an <strong>onPressed</strong> event, which we&#39;ll use to trigger the change. By performing the desired change (flipping the value from <strong>false</strong> to <strong>true</strong> in the corresponding model) will trigger a set of events:</p>
+<ul>
+<li>The value in the model changes from true to false</li>
+<li>The widget gets notified that its user interface is not in sync with the data via the <strong>setState</strong> method</li>
+<li>A widget rebuild kicks off, re-rendering the list of <strong>IconButton</strong> widgets</li>
+<li>The corresponding <strong>IconButton</strong> widget that has the <strong>isSelected</strong> true will be yellow, the rest will be gray</li>
+</ul>
+<p>Inside the <strong>onPressed()</strong> event, call the <strong>setState()</strong> method, and inside of this method, loop through all <strong><em>bottomBarItems</em></strong> items, only marking as selected the one that matches with the <strong>barItemWidget</strong> - the one in the current iteration:</p>
+<p class="image-container"><img alt="AppBottomBar" src="img/36cb663528bc46f4.png"></p>
+<p>Every time we press on one of the non-selected items, <strong>setState</strong> gets called, flag is reset for one of the items, widget rebuilds, and so on.</p>
+<p>Here&#39;s the code for the whole <strong>List.generate</strong> callback, just in case you want to save typing:</p>
+<pre><code language="language-flutter" class="language-flutter">var barItemWidget = _bottomBarItems[index];
+
+return IconButton(
+  icon: Icon(
+    barItemWidget.icon, 
+    color: barItemWidget.isSelected! ? mainYellow : Colors.grey
+  ),
+  onPressed: () {
+    setState(() {
+      _bottomBarItems.forEach((element) {
+        element.isSelected = element == barItemWidget;
+      });
+    });
+  }
+);
+
+</code></pre>
+<p>If you take it for a spin on DartPad and hit <strong>Run</strong>, you&#39;ll notice the newly minted <strong>BottomBarWidget</strong> widget. Click on the items on the bar and you&#39;ll see them change state accordingly, and the state contained only within this widget in a very efficient manner:</p>
+<p class="image-container"><img alt="AppBottomBar" src="img/a22ac09eb83b36d.png"></p>
+<p>Also notice the full-fledged <strong>LandingPage</strong> page widget, with all its widgets in place.</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Wrap-up" duration="0">
+        <p>And with that, we&#39;re done with this codelab for this workshop, where we accomplished the following:</p>
+<ul>
+<li>Created the Landing Page</li>
+<li>Created the individual widgets that make up this page widget</li>
+<li>Created models and mocked data that fed these widgets</li>
+<li>Dive into building UI layouts in Flutter using just core widgets</li>
+<li>Delved into StatefulWidgets and how they changed state and trigger widget rebuilds</li>
+</ul>
+<h3 is-upgraded>Please don&#39;t forget to follow me on social media:</h3>
+<ul>
+<li>On Twitter (<a href="https://www.twitter.com/drcoderz" target="_blank">@drcoderz</a>)</li>
+<li>On YouTube (<a href="https://www.youtube.com/channel/UCKsp3r1ERjCpKJtD2n5WtPg" target="_blank">Roman Just Codes</a>)</li>
+<li>On My <a href="https://romanjustcodes.web.app/#/home" target="_blank">Personal Portfolio</a></li>
+<li>On <a href="https://medium.com/@romanejaquez" target="_blank">Medium</a></li>
+</ul>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Complete Code" duration="0">
+        <p>In case you fell behind on this codelab, below is the whole code for this codelab in a way you can copy / paste directly into DartPad:</p>
+<pre><code language="language-flutter" class="language-flutter">import &#39;package:flutter/material.dart&#39;;
+
+final Color mainYellow = Color(0xFFFFB02F);
+final Color primaryGray = Color(0xFF313131);
+final Color secondaryGray = Color(0xFF1C1C1C);
+final Color lightGray = Color(0xFF3B3B3B);
+
+final List&lt;AttractionModel&gt; attractions = [
+  AttractionModel(
+    imgPath: &#39;https://images.pexels.com/photos/260590/pexels-photo-260590.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=3&amp;h=750&amp;w=1260&#39;,
+    name: &#39;Golden Gate Bridge&#39;,
+    location: &#39;San Francisco, CA&#39;,
+    description: &#39;The Golden Gate Bridge is a suspension bridge spanning the Golden Gate, the one-mile-wide strait connecting San Francisco Bay and the Pacific Ocean.&#39;
+  ),
+  AttractionModel(
+    imgPath: &#39;https://images.pexels.com/photos/5627275/pexels-photo-5627275.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=3&amp;h=750&amp;w=1260&#39;,
+    name: &#39;Brooklyn Bridge&#39;,
+    location: &#39;Brooklyn, NY&#39;,
+    description: &#39;The Golden Gate Bridge is a suspension bridge spanning the Golden Gate, the one-mile-wide strait connecting San Francisco Bay and the Pacific Ocean.&#39;
+  ),
+  AttractionModel(
+    imgPath: &#39;https://images.pexels.com/photos/5241381/pexels-photo-5241381.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=3&amp;h=750&amp;w=1260&#39;,
+    name: &#39;London Bridge&#39;,
+    location: &#39;London, UK&#39;,
+    description: &#39;The Golden Gate Bridge is a suspension bridge spanning the Golden Gate, the one-mile-wide strait connecting San Francisco Bay and the Pacific Ocean.&#39;
+  ),
+  AttractionModel(
+    imgPath: &#39;https://images.pexels.com/photos/1680247/pexels-photo-1680247.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=650&amp;w=940&#39;,
+    name: &#39;Harbour Bridge&#39;,
+    location: &#39;Sydney, AU&#39;,
+    description: &#39;The Golden Gate Bridge is a suspension bridge spanning the Golden Gate, the one-mile-wide strait connecting San Francisco Bay and the Pacific Ocean.&#39;
+  )
+];
+
+final List&lt;BottomBarModel&gt; bottomBarListItems = [
+  BottomBarModel(icon: Icons.explore_outlined, isSelected: true),
+  BottomBarModel(icon: Icons.favorite_border, isSelected: false),
+  BottomBarModel(icon: Icons.comment_outlined, isSelected: false),
+  BottomBarModel(icon: Icons.account_circle_outlined, isSelected: false),
+];
+
+void main() {
+  runApp(
+    MaterialApp(
+      home: LandingPage(),
+      debugShowCheckedModeBanner: false
+    )
+  );
+}
+
+
+class LandingPage extends StatelessWidget {
+  
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        elevation: 0,
+        backgroundColor: primaryGray,
+        iconTheme: IconThemeData(color: mainYellow),
+        title: Center(
+          child: Icon(Icons.airplanemode_on, color: mainYellow)
+        ),
+        actions: [
+          Container(
+            margin: EdgeInsets.only(right: 10),
+            child: IconButton(
+              icon: Icon(Icons.notifications_on_outlined, color: Colors.grey),
+              onPressed: () {}
+            )
+          )
+        ]
+      ),
+      drawer: Drawer(
+        child: Container(
+          color: mainYellow,
+          alignment: Alignment.bottomLeft,
+          padding: EdgeInsets.all(20),
+          child: Icon(Icons.airplanemode_on, size: 80, color: Colors.black)
+        )
+      ),
+      body: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            colors: [
+              primaryGray,
+              secondaryGray
+            ],
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter
+          )
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            HeaderWidget(),
+            AttractionListView(),
+            BottomBarWidget()
+          ]
+        )
+      )
+    );
+  }
+}
+
+//-----WIDGETS-----
+
+class HeaderWidget extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Padding(
+          padding: EdgeInsets.only(top: 30, left: 30, right: 30),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(&#39;Where do you&#39;, style: TextStyle(color: Colors.white, fontSize: 30, fontWeight: FontWeight.bold)),
+              Text(&#39;want to go?&#39;, style: TextStyle(color: mainYellow, fontSize: 30, fontWeight: FontWeight.bold))
+            ]
+          ),
+        ),
+        Padding(
+          padding: EdgeInsets.only(left: 30, right: 30),
+          child: Container(
+            padding: EdgeInsets.all(15),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(50),
+              color: lightGray
+            ),
+            margin: EdgeInsets.only(top: 20, bottom: 20),
+            child: Row(
+              children: [
+                Icon(Icons.search, color: Colors.grey),
+                SizedBox(width: 10),
+                Text(&#39;Search&#39;, style: TextStyle(color: Colors.grey))
+              ]
+            )
+          )
+        )
+      ]
+    );
+  }
+}
+
+class AttractionListView extends StatelessWidget {
+  
+  @override
+  Widget build(BuildContext context) {
+    return Expanded(
+      child: ListView.builder(
+        padding: EdgeInsets.only(left: 10),
+        itemCount: attractions.length,
+        scrollDirection: Axis.horizontal,
+        itemBuilder: (context, index) {
+          
+          AttractionModel currentAttraction = attractions[index];
+          return AttractionCard(attractionModel: currentAttraction);
+
+        }
+      )
+    );
+  }
+}
+
+class AttractionCard extends StatelessWidget {
+
+  AttractionModel? attractionModel;
+
+  AttractionCard({ this.attractionModel });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 180,
+      margin: EdgeInsets.all(10),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(25),
+        child: Stack(
+          children: [
+            Container(
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: NetworkImage(attractionModel!.imgPath!),
+                  fit: BoxFit.cover
+                )
+              )
+            ),
+            Container(
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  colors: [
+                    Colors.transparent,
+                    Colors.black.withOpacity(0.5)
+                  ],
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter
+                )
+              )
+            ),
+            Padding(
+              padding: EdgeInsets.all(30),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Text(attractionModel!.name!, style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold)),
+                  SizedBox(height: 10),
+                  Text(attractionModel!.location!, style: TextStyle(color: mainYellow))
+                ]
+              )
+            )
+          ]
+        ),
+      )
+    );
+  }
+}
+
+class BottomBarWidget extends StatefulWidget {
+  @override
+  State&lt;BottomBarWidget&gt; createState() =&gt; BottomBarWidgetState();
+}
+
+class BottomBarWidgetState extends State&lt;BottomBarWidget&gt; {
+
+  List&lt;BottomBarModel&gt; _bottomBarItems = bottomBarListItems;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: EdgeInsets.only(top: 20, bottom: 20),
+      padding: EdgeInsets.all(20),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: List.generate(
+          _bottomBarItems.length, (index) {
+
+            var barItemWidget = _bottomBarItems[index];
+
+            return IconButton(
+              icon: Icon(
+                barItemWidget.icon, 
+                color: barItemWidget.isSelected! ? mainYellow : Colors.grey
+              ),
+              onPressed: () {
+                setState(() {
+                  _bottomBarItems.forEach((element) {
+                    element.isSelected = element == barItemWidget;
+                  });
+                });
+              }
+            );
+          }
+        )
+      )
+    );
+  }
+}
+
+//-----MODELS-----
+
+class AttractionModel {
+  
+  String? imgPath;
+  String? name;
+  String? location;
+  String? description;
+  
+  AttractionModel({
+    this.imgPath,
+    this.name,
+    this.location,
+    this.description
+  });
+}
+
+class BottomBarModel {
+  IconData? icon;
+  bool? isSelected;
+
+  BottomBarModel({ this.icon, this.isSelected });
+}
+
+</code></pre>
+
+
+      </google-codelab-step>
+    
+  </google-codelab>
+
+  <script src="https://storage.googleapis.com/codelab-elements/native-shim.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/custom-elements.min.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/prettify.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/codelab-elements.js"></script>
+  <script src="//support.google.com/inapp/api.js"></script>
+
+</body>
+</html>
