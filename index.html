@@ -96,6 +96,17 @@ void main() {
 </code></pre>
 <p>We are importing the Material Library Flutter package and like every Flutter app, the main entrypoint is the <strong>main</strong> method. Inside this method is where things kick off. We&#39;ll get back to this point in a minute.</p>
 <p>Inside the <strong>main</strong> method, add the following code:</p>
+<pre><code language="language-flutter" class="language-flutter">// add this code inside your void main():
+
+runApp(
+  MaterialApp(
+    home: LandingPage(),
+    debugShowCheckedModeBanner: false
+  );
+)
+
+</code></pre>
+<p>Your code should look like this:</p>
 <p class="image-container"><img alt="Main Method" src="img/e6b8bb8a5a22b740.png"></p>
 <aside class="warning"><p>Don&#39;t mind the error you&#39;re seeing about the LandingPage widget since we haven&#39;t created yet. We&#39;ll get to it in a minute.</p>
 </aside>
